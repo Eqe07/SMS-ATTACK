@@ -1,0 +1,133 @@
+#!/bin/bash
+
+if [[ $1 == güncelle ]];then
+	cd files
+	bash güncelleme.sh güncelle
+	exit
+fi
+cd files
+#bash güncelleme.sh
+if [[ $1 == "" || $1 == -h || $1 == --help ]];then
+	clear
+	bash banner.sh
+	printf "\e[31m
+	////////////////////\e[1;4;97m HELP\e[0;31m ////////////////////\e[97m
+
+	\e[1;31m[ \e[1;4;97mSEÇENEKLER\e[0;1;31m ]\e[97m
+
+	-n --numara \e[31m>>\e[32m NUMARA GİRİNİZ\e[97m
+
+	-m --mesaj  \e[31m>>\e[32m BELİRLEDİĞİN BİR MESAJI GÖNDER\e[97m
+
+
+	\e[31m[ \e[1;4;97mKULLANIM\e[0;1;31m ]\e[97m
+
+	bash termux-sms-attack.sh --numara 05555555555
+
+	bash termux-sms-attack.sh --numara 05555555555 --mesaj merhaba
+	"
+	echo
+	echo
+	echo
+	exit
+fi
+if [[ $1 == -n || $1 == --numara ]];then
+	if [[ -n $2 ]];then
+		kontrol=$(printf "$2" |wc -m)
+		if [[ $kontrol == 11 ]];then
+			printf "$2" > numara.txt
+			if [[ $3 == -m || $3 == --mesaj ]];then
+				if [[ -n $4 ]];then
+					clear
+					bash banner2.sh
+					echo
+					echo -ne " \e[42;30mSending: [10%]\e[0;97m  [##.......................]\r"
+					sleep 2
+					echo -ne " \e[42;30mSending: [25%]\e[0;97m  [#####....................]\r"
+					sleep 2
+					echo -ne " \e[42;30mSending: [50%]\e[0;97m  [############.............]\r"
+					sleep 2
+					echo -ne " \e[42;30mSending: [75%]\e[0;97m  [###################......]\r"
+					sleep 2
+					echo -ne " \e[42;30mSending: [100%]\e[0;97m [#########################]\r"
+					echo -ne '\n'
+					curl -X POST https://textbelt.com/text --data-urlencode phone="+9$(numara.txt)" --data-urlencode message="$4" -d key=textbelt > test
+					if [[ $(cat test |grep true) == true ]];then
+						echo
+						printf " \e[32m[✓]\e[97m GÖNDERİLDİ \e[31m>>\e[1;4;97m YOULA\e[0m"
+						echo
+					else
+						echo
+						echo
+						echo
+						printf "\e[31m[*]\e[97m MESAJ GÖNDERME LİMİTİ BİTTİ"
+						echo
+						echo
+						echo
+						sleep 1
+						printf "\e[33m[*]\e[97m LİMİT YENİLEMEK İÇİN VPN KULLANIP DENE"
+						echo
+						echo
+						echo
+						exit
+					fi
+
+					exit
+				else
+					echo
+					echo
+					echo
+					printf "\e[31m[!]\e[97m MESAJ GİRİLMEDİ"
+					echo
+					echo
+					echo
+					exit
+				fi
+			else
+				if [[ $3 == "" ]];then
+					bash smssend.sh
+					exit
+				fi
+				echo
+				echo
+				echo
+				printf "\e[31m[!]\e[97m HATALI SEÇİM"
+				echo
+				echo
+				echo
+				exit
+			fi
+		else
+			echo
+			echo
+			echo
+			printf "\e[31m[!]\e[97m HATALI NUMARA GİRDİNİZ"
+			echo
+			echo
+			echo
+			exit
+		fi
+	else
+		echo
+		echo
+		echo
+		printf "\e[31m[!]\e[97m NUMARA GİRİLMEDİ"
+		echo
+		echo
+		echo
+		exit
+
+	fi
+else
+	if [[ $1 == -h ]];then
+		exit
+	fi
+	echo
+	echo
+	echo
+	printf "\e[31m[!]\e[97m HATALI SEÇİM"
+	echo
+	echo
+	echo
+	exit
+fi
