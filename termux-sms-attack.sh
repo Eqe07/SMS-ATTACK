@@ -1,12 +1,25 @@
 #!/bin/bash
-
+if [[ -a /data/data/com.termux/files/usr/bin/curl ]];then
+	echo
+else
+	echo
+	echo
+	printf "\e[33m[*]\e[97m CURL PAKETİ KURULUYOR"
+	echo
+	echo
+	echo
+	pkg install curl -y
+fi
 if [[ $1 == güncelle ]];then
 	cd files
 	bash güncelleme.sh güncelle
 	exit
 fi
 cd files
-#bash güncelleme.sh
+if [[ $1 == --güncelle || $1 == -g ]];then
+	bash güncelleme.sh
+	exit
+fi
 if [[ $1 == "" || $1 == -h || $1 == --help ]];then
 	clear
 	bash banner.sh
@@ -15,12 +28,16 @@ if [[ $1 == "" || $1 == -h || $1 == --help ]];then
 
 	\e[1;31m[ \e[1;4;97mSEÇENEKLER\e[0;1;31m ]\e[97m
 
-	-n --numara \e[31m>>\e[32m NUMARA GİRİNİZ\e[97m
+	-g --güncelle  \e[31m>>\e[33m TOOLU GÜNCELLE\e[97m
 
-	-m --mesaj  \e[31m>>\e[32m BELİRLEDİĞİN BİR MESAJI GÖNDER\e[97m
+	-n --numara    \e[31m>>\e[32m NUMARA GİRİNİZ\e[97m
+
+	-m --mesaj     \e[31m>>\e[32m BELİRLEDİĞİN BİR MESAJI GÖNDER\e[97m
 
 
-	\e[31m[ \e[1;4;97mKULLANIM\e[0;1;31m ]\e[97m
+	\e[31m[ \e[1;4;97mKULLANIM\e[0;1;31m ]\e[33m
+
+	bash termux-sms-attack.sh --güncelle\e[97m
 
 	bash termux-sms-attack.sh --numara 05555555555
 

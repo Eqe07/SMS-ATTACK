@@ -42,6 +42,13 @@ readme=$(sed -n 3p README.md |tr -d "Güncelleme ")
 guncelleme=$(curl -s "https://github.com/termux-egitim/$buyukad" |grep -o $readme)
 if [ "$guncelleme" = "$readme" ];then
 	echo
+	echo
+	echo
+	printf "\e[33m[*]\e[97m YENİ GÜNCELLEME YAPILMADI"
+	echo
+	echo
+	echo
+
 else
 	kontrol=$(curl -s https://github.com/termux-egitim/$kucukad |grep -o not-found |wc -w)
 	if [[ $kontrol == 0 ]];then
@@ -104,4 +111,12 @@ fi
 int_test=$(curl -s "https://github.com/termux-egitim/$buyukad" |wc -l)
 if [[ $int_test -gt 0 ]];then
 	otomatik_guncelleme
+else
+	echo
+	echo
+	echo
+	printf "\e[31m[!]\e[97m İNTERNET BAĞLANTINIZI KONTROL EDİN.."
+	echo
+	echo
+	echo
 fi
