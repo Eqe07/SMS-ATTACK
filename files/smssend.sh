@@ -17,7 +17,7 @@ echo -ne '\n'
 echo
 progress
 curl -s -X POST https://my.telegram.org/auth/send_password --data-urlencode phone="+9$numara" > test
-if [[ $(cat test |grep random_hash) == random_hash ]];then
+if [[ $(cat test |grep -o hash) == hash ]];then
 	echo
 	printf " \e[32m[✓]\e[97m GÖNDERİLDİ \e[31m>>\e[1;4;97m TELEGRAM\e[0m"
 	echo
