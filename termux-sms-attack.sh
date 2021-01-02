@@ -83,11 +83,6 @@ if [[ $1 == -n || $1 == --numara ]];then
 						echo
 						echo
 						echo
-						sleep 1
-						printf "\e[33m[*]\e[97m LİMİT YENİLEMEK İÇİN VPN KULLANIP DENE"
-						echo
-						echo
-						echo
 						exit
 					fi
 
