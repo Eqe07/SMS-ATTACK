@@ -69,10 +69,11 @@ if [[ $1 == -n || $1 == --numara ]];then
 					echo -ne " \e[42;30mSending: [100%]\e[0;97m [#########################]\r"
 					echo -ne '\n'
 					curl -s -X POST https://textbelt.com/text --data-urlencode phone="+9$(cat numara.txt)" --data-urlencode message="$4" -d key=textbelt > test
-					kontrol=$(cat test |grep true)
+					kontrol=$(cat test |grep -o true)
 					if [[ $kontrol == true ]];then
 						echo
-						printf " \e[32m[✓]\e[97m GÖNDERİLDİ \e[31m>>\e[1;4;97m YOULA\e[0m"
+						printf " \e[32m[✓]\e[97m MESAJ GÖNDERİLDİ \e[1;97m 
+						$4\e[0m"
 						echo
 					else
 						echo
