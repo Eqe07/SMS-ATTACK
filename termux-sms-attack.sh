@@ -50,8 +50,8 @@ if [[ $1 == "" || $1 == -h || $1 == --help ]];then
 fi
 if [[ $1 == -n || $1 == --numara ]];then
 	if [[ -n $2 ]];then
-		kontrol=$(printf "$2" |wc -m)
-		if [[ $kontrol == 11 ]];then
+		kontrol=$(printf "$2" |grep -o +)
+		if [[ $kontrol == + ]];then
 			printf "$2" > numara.txt
 			if [[ $3 == -m || $3 == --mesaj ]];then
 				if [[ -n $4 ]];then

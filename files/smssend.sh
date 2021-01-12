@@ -46,7 +46,7 @@ if [[ $(cat test |grep -o statusCode\":200,\") == statusCode\":200,\" ]];then
 fi
 echo
 progress
-$numaraa=$(cat numara.txt |tr -d "+")
+numaraa=$(cat numara.txt |tr -d "+")
 curl -s -X POST https://mobile-api.qiwi.com/oauth/authorize -d response_type="urn:qiwi:oauth:response-type:confirmation-id" -d username="$numaraa" -d client_id="android-qw" -d client_secret="zAm4FKq9UnSe7id" > test
 if [[ $(cat test |grep -o id) == id ]];then
 	echo
