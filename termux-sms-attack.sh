@@ -39,9 +39,9 @@ if [[ $1 == "" || $1 == -h || $1 == --help ]];then
 
 	bash termux-sms-attack.sh --güncelle\e[97m
 
-	bash termux-sms-attack.sh --numara 05555555555
+	bash termux-sms-attack.sh --numara +905555555555
 
-	bash termux-sms-attack.sh --numara 05555555555 --mesaj merhaba
+	bash termux-sms-attack.sh --numara +905555555555 --mesaj merhaba
 	"
 	echo
 	echo
