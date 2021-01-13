@@ -1,3 +1,3 @@
 termux-sms-attack
 TERMUX-SMS-ATTACK
-Güncelleme 12.01.2021
+Güncelleme 14.01.2021

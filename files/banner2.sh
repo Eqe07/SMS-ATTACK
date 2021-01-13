@@ -1,24 +1,4 @@
 #!/bin/bash
-#http://www.network-science.de/ascii/
-#cyberlarge
-if [[ $1 == site ]];then
-	echo
-	echo
-	echo
-	printf "
-
-	SİTE \e[31m>\e[32m http://www.network-science.de/ascii\e[0m
-
-	YAZI FONTU \e[31m>\e[32m CYBERLARGE\e[0m
-
-	ADJUSTMENT \e[31m>\e[32m LEFT \e[31m=\e[32m CENTER\e[0m
-	"
-	echo
-	echo
-	echo
-	exit
-fi
-
 #################### GÜNLER ####################
 
 pazartesi=$(date |grep -o Mon)
