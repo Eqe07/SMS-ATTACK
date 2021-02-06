@@ -1,7 +1,7 @@
 #!/bin/bash
 numara=$(cat numara.txt)
 clear
-bash banner2.sh
+bash banner.sh
 progress () {
 echo -ne " \e[42;30mSending: [10%]\e[0;97m  [##.......................]\r"
 sleep 2
