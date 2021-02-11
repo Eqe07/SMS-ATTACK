@@ -5,7 +5,7 @@ from config import attack
 
 attack_number_phone=Distribution_Service()
 try:
-    attack_number_phone.phone('+905346381542')
+    attack_number_phone.phone('+905346333333')
 except Exception as error:
     print(f'Phone - +905555555555')
     sys.exit()
