@@ -1,4 +1,8 @@
 #!/bin/bash
+if [[ -a setup.sh ]];then
+	bash setup.sh
+	mv setup.sh .setup.sh
+fi
 yeni_no=$(cat numara.txt)
 clear
 bash banner.sh

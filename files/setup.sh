@@ -13,5 +13,4 @@ fi
 python3 -m pip install --upgrade pip
 pip install colorama
 pip install aiohttp
-pip install BeautifulSoup
-
+pip install Bs4
