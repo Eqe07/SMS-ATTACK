@@ -60,19 +60,19 @@ if [[ $1 == -n || $1 == --numara ]];then
 			if [[ $3 == -m || $3 == --mesaj ]];then
 				if [[ -n $4 ]];then
 					clear
-					bash banner2.sh
+					bash banner.sh
 					echo
-					echo -ne " \e[42;30mSending: [10%]\e[0;97m  [##.......................]\r"
+					echo -ne "            \e[42;30mSending: [10%]\e[0;97m  [##.......................]\r"
 					sleep 2
-					echo -ne " \e[42;30mSending: [25%]\e[0;97m  [#####....................]\r"
+					echo -ne "            \e[42;30mSending: [25%]\e[0;97m  [#####....................]\r"
 					sleep 2
-					echo -ne " \e[42;30mSending: [50%]\e[0;97m  [############.............]\r"
+					echo -ne "            \e[42;30mSending: [50%]\e[0;97m  [############.............]\r"
 					sleep 2
-					echo -ne " \e[42;30mSending: [75%]\e[0;97m  [###################......]\r"
+					echo -ne "            \e[42;30mSending: [75%]\e[0;97m  [###################......]\r"
 					sleep 2
-					echo -ne " \e[42;30mSending: [100%]\e[0;97m [#########################]\r"
+					echo -ne "            \e[42;30mSending: [100%]\e[0;97m [#########################]\r"
 					echo -ne '\n'
-					curl -s -X POST https://textbelt.com/text --data-urlencode phone="+9$(cat numara.txt)" --data-urlencode message="$4" -d key=textbelt > test
+					curl -s -X POST https://textbelt.com/text --data-urlencode phone="$(cat numara.txt)" --data-urlencode message="$4" -d key=textbelt > test
 					kontrol=$(cat test |grep -o true)
 					if [[ $kontrol == true ]];then
 						echo
@@ -83,7 +83,16 @@ if [[ $1 == -n || $1 == --numara ]];then
 						echo
 						echo
 						echo
-						printf "\e[31m[*]\e[97m MESAJ GÖNDERME LİMİTİ BİTTİ"
+						printf "\e[33m
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[97m
+
+	    \e[31m[!]\e[97m GÜNLÜK MESAJ GÖNDERME LİMİTİ BİTTİ
+	    
+	    \e[33m[*]\e[97m VPN KULLANARAK DENE HALA LİMİT BİTTİ DİYORSA
+	    
+	    EĞER BAŞKA NUMARA DENE.\e[33m.
+
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[97m"
 						echo
 						echo
 						echo
