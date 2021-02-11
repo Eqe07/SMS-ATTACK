@@ -37,5 +37,5 @@ echo
 eski_no=$(cat main.py |grep -o +[0-9]\* |sed -n 1p)
 sed -ie "s/$eski_no/$yeni_no/g" main.py
 rm main.pye
-python3 main.py > .sending
+python3 main.py
 
