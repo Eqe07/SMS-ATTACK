@@ -1,10 +1,11 @@
 #!/bin/bash
-if [[ -a /data/data/com.termux/files/usr/bin/curl ]];then
+#################### CURL ####################
+kontrol=$(which curl |wc -l)
+if [[ $kontrol == 0 ]];then
 	echo
-else
 	echo
 	echo
-	printf "\e[33m[*]\e[97m CURL PAKETİ KURULUYOR"
+	printf "\e[32m[✓]\e[97m CURL PAKETİ KURLUYOR"
 	echo
 	echo
 	echo
@@ -16,10 +17,7 @@ if [[ $1 == güncelle ]];then
 	exit
 fi
 cd files
-if [[ $1 == --güncelle || $1 == -g ]];then
-	bash güncelleme.sh
-	exit
-fi
+bash güncelleme.sh
 if [[ $1 == "" || $1 == -h || $1 == --help ]];then
 	clear
 	bash banner.sh
@@ -32,16 +30,12 @@ if [[ $1 == "" || $1 == -h || $1 == --help ]];then
 
 	\e[1;31m[ \e[1;4;97mSEÇENEKLER\e[0;1;31m ]\e[97m
 
-	-g --güncelle  \e[31m>>\e[33m TOOLU GÜNCELLE\e[97m
-
 	-n --numara    \e[31m>>\e[32m NUMARA GİRİNİZ\e[97m
 
 	-m --mesaj     \e[31m>>\e[32m BELİRLEDİĞİN BİR MESAJI GÖNDER\e[97m
 
 
 	\e[31m[ \e[1;4;97mKULLANIM\e[0;1;31m ]\e[33m
-
-	bash sms-attack.sh --güncelle\e[97m
 
 	bash sms-attack.sh --numara +905555555555
 
