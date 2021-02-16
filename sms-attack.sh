@@ -39,7 +39,7 @@ if [[ $1 == "" || $1 == -h || $1 == --help ]];then
 
 	bash sms-attack.sh --numara +905555555555
 
-	bash sms-attack.sh --numara +905555555555 --mesaj merhaba
+	bash sms-attack.sh --numara +905555555555 --mesaj \"Merhaba Nasılsın\"
 	"
 	echo
 	echo

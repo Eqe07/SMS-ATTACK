@@ -1,6 +1,6 @@
 sms-attack
 
-Güncelleme 12.02.2021
+Güncelleme 16.02.2021
 
 GİTHUB    : https://github.com/termuxxtoolss
 
