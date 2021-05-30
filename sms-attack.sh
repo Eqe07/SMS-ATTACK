@@ -12,6 +12,20 @@ if [[ ! -a $PREFIX/bin/curl ]];then
 	echo
 	pkg install curl -y
 fi
+
+# PYTHON  PAKET KONTROLÜ #
+
+if [[ ! -a $PREFIX/bin/python ]];then
+	echo
+	echo
+	echo
+	printf "\e[32m[✓]\e[97m PYTHON KURULUYOR"
+	echo
+	echo
+	echo
+	pkg install python -y
+fi
+
 if [[ $1 == update ]];then
 	cd files
 	bash update.sh update $2
