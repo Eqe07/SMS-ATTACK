@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# CURL  PAKET KONTROLÜ #
+# CURL PAKET KONTROLÜ #
 
 if [[ ! -a $PREFIX/bin/curl ]];then
 	echo
@@ -13,7 +13,7 @@ if [[ ! -a $PREFIX/bin/curl ]];then
 	pkg install curl -y
 fi
 
-# PYTHON  PAKET KONTROLÜ #
+# PYTHON PAKET KONTROLÜ #
 
 if [[ ! -a $PREFIX/bin/python ]];then
 	echo
@@ -26,14 +26,24 @@ if [[ ! -a $PREFIX/bin/python ]];then
 	pkg install python -y
 fi
 
+# PYTHON MODÜL KONTROLÜ #
+
+if [[ -a files/requirements.txt ]];then
+	echo
+	echo
+	echo
+	printf "\e[32m[✓]\e[97m PYTHON KURULUYOR"
+	echo
+	echo
+	echo
+	pip install -r files/requirements.txt
+	mv files/requirements.txt files/.requirements.txt
+fi
+
 if [[ $1 == update ]];then
 	cd files
 	bash update.sh update $2
 	exit
-fi
-if [[ -a files/setup.sh ]];then
-	bash files/setup.sh
-	mv files/setup.sh files/.setup.sh
 fi
 clear
 cd files
