@@ -1,8 +1,4 @@
 #!/bin/bash
-if [[ -a setup.sh ]];then
-	bash setup.sh
-	mv setup.sh .setup.sh
-fi
 clear
 bash banner.sh
 progress () {

@@ -17,6 +17,10 @@ if [[ $1 == update ]];then
 	bash update.sh update $2
 	exit
 fi
+if [[ -a files/setup.sh ]];then
+	bash files/setup.sh
+	mv files/setup.sh files/.setup.sh
+fi
 clear
 cd files
 bash update.sh
