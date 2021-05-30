@@ -1,6 +1,5 @@
 #!/bin/bash
-kontrol=$(which python3 |wc -l)
-if [[ $kontrol == 0 ]];then
+if [[ ! -a $PREFIX/bin/python ]];then
 	echo
 	echo
 	echo
@@ -10,7 +9,4 @@ if [[ $kontrol == 0 ]];then
 	echo
 	pkg install python -y
 fi
-python3 -m pip install --upgrade pip
-pip install colorama
-pip install aiohttp
-pip install Bs4
+pip install -r requirements.txt

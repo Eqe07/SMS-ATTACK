@@ -3,7 +3,6 @@ if [[ -a setup.sh ]];then
 	bash setup.sh
 	mv setup.sh .setup.sh
 fi
-yeni_no=$(cat numara.txt)
 clear
 bash banner.sh
 progress () {
@@ -38,8 +37,5 @@ printf "\e[33m
 echo
 echo
 echo
-eski_no=$(cat main.py |grep -o +[0-9]\* |sed -n 1p)
-sed -ie "s/$eski_no/$yeni_no/g" main.py
-rm main.pye
-python3 main.py
+python main.py
 

