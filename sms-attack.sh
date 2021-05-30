@@ -32,7 +32,7 @@ if [[ -a files/requirements.txt ]];then
 	echo
 	echo
 	echo
-	printf "\e[32m[✓]\e[97m PYTHON KURULUYOR"
+	printf "\e[32m[✓]\e[97m PYTHON MODÜLLERİ KURULUYOR"
 	echo
 	echo
 	echo
