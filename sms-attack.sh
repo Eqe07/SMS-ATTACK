@@ -84,30 +84,57 @@ if [[ $1 == "" || $1 == -h || $1 == --help ]];then
 	echo
 	exit
 fi
+_progress() {
+clear
+bash banner.sh
+progress () {
+echo -ne "            \e[42;30mSending: [10%]\e[0;97m  [##.......................]\r"
+sleep 0.5
+echo -ne "            \e[42;30mSending: [25%]\e[0;97m  [#####....................]\r"
+sleep 0.5
+echo -ne "            \e[42;30mSending: [50%]\e[0;97m  [############.............]\r"
+sleep 0.5
+echo -ne "            \e[42;30mSending: [75%]\e[0;97m  [###################......]\r"
+sleep 0.5
+echo -ne "            \e[42;30mSending: [100%]\e[0;97m [#########################]\r"
+echo -ne '\n'
+}
+echo
+echo
+echo
+echo
+echo
+echo
+progress
+echo
+echo
+echo
+echo
+}
+_close() {
+printf "\e[33m
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[97m
+
+               BAĞLANTIYI KESMEK İÇİN\e[31m >> \e[97m[\e[31m CTRL Z \e[97m]\e[33m
+
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[97m"
+echo
+echo
+echo
+}
 if [[ $1 == -n || $1 == --numara ]];then
 	if [[ -n $2 ]];then
 		kontrol=$(printf "$2" |grep -o +)
 		if [[ $kontrol == + ]];then
-			printf "$2" > numara.txt
 			if [[ $3 == -ms || $3 == --moka_send ]];then
-				bash moka_send.sh
+				_progress
+				_close
+				bash moka_send.sh $2
 			fi
 			if [[ $3 == -m || $3 == --mesaj ]];then
 				if [[ -n $4 ]];then
-					clear
-					bash banner.sh
-					echo
-					echo -ne "            \e[42;30mSending: [10%]\e[0;97m  [##.......................]\r"
-					sleep 2
-					echo -ne "            \e[42;30mSending: [25%]\e[0;97m  [#####....................]\r"
-					sleep 2
-					echo -ne "            \e[42;30mSending: [50%]\e[0;97m  [############.............]\r"
-					sleep 2
-					echo -ne "            \e[42;30mSending: [75%]\e[0;97m  [###################......]\r"
-					sleep 2
-					echo -ne "            \e[42;30mSending: [100%]\e[0;97m [#########################]\r"
-					echo -ne '\n'
-					curl -s -X POST https://textbelt.com/text --data-urlencode phone="$(cat numara.txt)" --data-urlencode message="$4" -d key=textbelt > success
+					_progress
+					curl -s -X POST https://textbelt.com/text --data-urlencode phone="$2" --data-urlencode message="$4" -d key=textbelt > success
 					control=$(cat success |grep -o false)
 					if [[ -n $control ]];then
 						control=$(cat success |grep -o "Test texts are temporarily disabled")
@@ -118,7 +145,7 @@ if [[ $1 == -n || $1 == --numara ]];then
 							printf "\e[33m
             +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[97m
 
-	    \e[31m[!]\e[97m ÖZEL SMS ATMA ÖZELLİĞİ SİTEDEN KAYNAKLI GEÇİCİ OLARAK DEVRE DIŞI.\e[33m.
+	    \e[31m[!]\e[97m ÖZEL SMS ATMA ÖZELLİĞİ TEXBELT SİTESİNDEN KAYNAKLI GEÇİCİ OLARAK DEVRE DIŞI.\e[33m.
 
             +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[97m"
 						       echo
@@ -128,6 +155,7 @@ if [[ $1 == -n || $1 == --numara ]];then
 						       exit
 						fi
 					fi
+
 					control=$(cat success |grep -o false)
 					if [[ -n $control ]];then
 						control=$(cat success |grep -o "Only one test text message is allowed per day.")
@@ -143,6 +171,28 @@ if [[ $1 == -n || $1 == --numara ]];then
 	    \e[33m[*]\e[97m VPN KULLANARAK DENE HALA LİMİT BİTTİ DİYORSA
 	    
 	    EĞER BAŞKA NUMARA DENE.\e[33m.
+
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[97m"
+						       echo
+						       echo
+						       echo
+						       rm success
+						       exit
+						fi
+					fi
+					control=$(cat success |grep -o false)
+					if [[ -n $control ]];then
+						control=$(cat success |grep -o "disabled for this country")
+						if [[ -n $control ]];then
+							echo
+							echo
+							echo
+							printf "\e[33m
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[97m
+
+
+	    \e[31m[!]\e[97m MESAJ ATMA ÖZELLİĞİ TEXBELT SİTESİNDEN KAYNAKLI\n\n\t\tBU NUMARADA Kİ ÜLKE İÇİN ENGELLENMİŞTİR.\e[33m.
+
 
             +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[97m"
 						       echo
@@ -173,7 +223,9 @@ if [[ $1 == -n || $1 == --numara ]];then
 				fi
 			else
 				if [[ $3 == "" ]];then
-					bash smssend.sh
+					_progress
+					_close
+					python main.py $2
 					exit
 				fi
 				echo

